@@ -110,7 +110,17 @@ var _ = {};
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
-    
+    var countHash = {}
+    var dupFreeArray = []
+    for (var i = 0; i < array.length; i++) {
+      if (countHash.hasOwnProperty(array[i]) ) {
+        countHash[array[i]] += 1
+      } else {
+        countHash[array[i]] = 1
+        dupFreeArray.push(array[i])
+      }
+    }
+    return dupFreeArray
   };
 
 
