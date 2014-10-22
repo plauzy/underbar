@@ -374,7 +374,6 @@ var _ = {};
         return func.apply(this, arguments)
       } 
       else {
-        console.log("not in hash yet" + results[arguments])
         return results[key]
       }
     }
@@ -389,6 +388,10 @@ var _ = {};
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+    var args = arguments
+    setTimeout( function() {
+      func(args[2], args[3]);
+    }, wait)
   };
 
 
@@ -403,6 +406,11 @@ var _ = {};
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var newArray = []
+    for (var i = array.length-1; i > -1 ; i-- ) {
+      newArray.push(array[i])
+    }
+    return newArray;
   };
 
 
