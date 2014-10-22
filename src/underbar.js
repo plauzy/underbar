@@ -212,7 +212,6 @@ var _ = {};
     }, false);
   };
 
-  _.contains = function()
 
 
 
@@ -220,25 +219,18 @@ var _ = {};
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-
-
-
-    return _.reduce(collection, function(tally, item) {
-
+    if (collection.length === 0) {
+      return true
+    }
+    return _.reduce(collection, function(truthTest, item) {
+      if (truthTest === false) {
+        return false;
+      }
+      // return iterator(item) === true;
+      return iterator(item) != false;
     })
-    // if (collection.length === 0) {
-    //   return true
-    // }
+    return true;
 
-    // return _.reduce(collection, function(result, item) {
-    //   if (result === false) {
-    //     return false
-    //   }
-    //   // if (!iterator(result)) {
-    //   //   return false
-    //   // } 
-    //   return iterator(item) === true
-    // },true )
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
