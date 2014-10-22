@@ -238,6 +238,9 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    if (arguments[0].length === 0) {
+      return false
+    }
     if ( _.every(collection, iterator) === true ) {
       return true
     }
@@ -245,20 +248,18 @@ var _ = {};
    
 
     return _.reduce(collection, function(truthTest, item) {
-      // if (iterator === undefined) {
-      //   console.log("No iterator")
-      // }
       if (truthTest === true) {
         return true
       }
-      // console.log("Truth test is : " + truthTest)
-      // console.log("Item is " + item)
-      // console.log(item)
-      // if (typeof(item) === 'string') {
-      //   console.log(item)
-      // }
-      
-      return iterator(item) === true
+
+      if (iterator) {
+        return iterator(item) === true
+      } else {
+        return item != false
+      }
+   
+
+     
     }, false)
   };
 
