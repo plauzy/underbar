@@ -298,6 +298,20 @@ var _ = {};
   // exists in obj
   _.defaults = function(obj) {
 
+    var obj1 = arguments[1]
+    for (var key in obj1) {
+      if (obj[key] === undefined) {
+        obj[key] = obj1[key]
+      }
+    }
+
+    // var obj2 = arguments[2]
+    // for (var key in obj2) {
+    //   if (obj[key] === undefined) {
+    //     obj[key] = obj2[key]
+    //   }
+    // }
+    return obj;
   };
 
 
