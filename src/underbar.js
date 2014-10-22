@@ -245,8 +245,6 @@ var _ = {};
       return true
     }
 
-   
-
     return _.reduce(collection, function(truthTest, item) {
       if (truthTest === true) {
         return true
@@ -283,11 +281,23 @@ var _ = {};
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+
+    var obj1 = arguments[1]
+    for (var key in obj1) {
+      obj[key] = obj1[key]
+    }
+
+    var obj2 = arguments[2]
+    for (var key in obj2) {
+      obj[key] = obj2[key]
+    }
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+
   };
 
 
