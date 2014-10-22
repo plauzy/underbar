@@ -346,6 +346,19 @@ var _ = {};
     };
   };
 
+  // _.once = function(func) {
+  //   var alreadyCalled = false 
+  //   var result;
+  //   return function() {
+  //     if (!alreadyCalled) {
+  //       result = func.apply(this, arguments);
+  //       alreadyCalled = true;
+  //     }
+  //     return result;
+  //   }
+  // }
+
+
   // Memoize an expensive function by storing its results. You may assume
   // that the function takes only one argument and that it is a primitive.
   //
@@ -353,6 +366,20 @@ var _ = {};
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var results = {}
+    return function() {
+      var key = arguments[0]
+      if (results[key] === undefined) {
+        results[key] = func.apply(this, arguments);
+        return func.apply(this, arguments)
+      } 
+      else {
+        console.log("not in hash yet" + results[arguments])
+        return results[key]
+      }
+    }
+    
+    
   };
 
   // Delays a function for the given number of milliseconds, and then calls
